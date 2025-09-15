@@ -49,28 +49,32 @@ void string_reverse(String* s) {
 }
 
 int main() {
-	size_t n = 0;
+	long long n = 0;
 	String s;
 
 	string_init(&s);
 
 	printf("Enter number: ");
-	scanf("%zd", &n);
+	scanf("%lld", &n);
 
-	printf("Number: %zd", n);
-
-	if (n == 0) {
+	if (n < 0) {
+		printf("INVALID VALUE negotive: %lld", n);
+		return 1;
+	} else if (n == 0) {
 		string_push_char(&s, '0');
 	} else {
-		while (n > 0) {
-			string_push_char(&s, n % 10 + '0');
-			n /= 10;
+		long long b = n;
+		while (b > 0) {
+			string_push_char(&s, b % 10 + '0');
+			b /= 10;
 		}
 	}
 
+	printf("Number: %lld", n);
+
 	string_reverse(&s);
 
-	printf("\nString: %s", s.data);
+	printf("\nString: \"%s\"", s.data);
 
 	string_free(&s);
 }
