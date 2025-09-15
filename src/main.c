@@ -59,9 +59,13 @@ int main() {
 
 	printf("Number: %zd", n);
 
-	while (n > 0) {
-		string_push_char(&s, (char)(n % 10 + '0'));
-		n /= 10;
+	if (n == 0) {
+		string_push_char(&s, '0');
+	} else {
+		while (n > 0) {
+			string_push_char(&s, n % 10 + '0');
+			n /= 10;
+		}
 	}
 
 	string_reverse(&s);
